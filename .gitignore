@@ -1,0 +1,25 @@
+# Ignore LLM models
+*.gguf
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+backend/models/
+
+# Ignore virtual environment
+backend/dscpl_env_clean/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Sensitive
+.env
+
+# Node or frontend build (optional)
+node_modules/
+dist/
+build/

@@ -403,7 +403,7 @@
         }
 
         [data-theme="dark"] .send-button {
-            background: linear-gradient(135deg, var(--neon-blue) 0%, var(--neon-green) 100%);
+            background: linear-gradient(135deg, var(--neon-blue) 0%, rgb(0, 255, 149) 100%);
             box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
         }
 
@@ -813,6 +813,24 @@
             const [error, setError] = useState('');
             const [theme, setTheme] = useState('light');
             const messagesEndRef = useRef(null);
+
+            useEffect(() => {
+                const timer = setTimeout(() => {
+                    setDebouncedInput(inputMessage);
+                }, 100); // 100ms delay
+                return () => clearTimeout(timer);
+            }, [inputMessage]);
+
+            // Ab input field ko update karo
+            <input
+                type="text"
+                className="message-input"
+                placeholder="Type your message here..."
+                value={inputMessage}
+                onChange={(e) => setInputMessage(e.target.value)} // No change here
+                onKeyPress={handleKeyPress}
+                disabled={isLoading}
+            />
 
             const scrollToBottom = () => {
                 messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
